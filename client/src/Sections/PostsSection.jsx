@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "state";
+import { setPosts } from "../state";
 import PostSection from "./PostSection";
 
 const PostsSection = ({ userId, isProfile = false }) => {
@@ -9,7 +9,7 @@ const PostsSection = ({ userId, isProfile = false }) => {
   const authToken = useSelector((state) => state.token);
 
   const fetchAllPosts = async () => {
-    const response = await fetch("http://localhost:3002/posts", {
+    const response = await fetch("https://socio-sphere-server-zeta.vercel.app/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${authToken}` },
     });
@@ -19,7 +19,7 @@ const PostsSection = ({ userId, isProfile = false }) => {
 
   const fetchUserPosts = async () => {
     const response = await fetch(
-      `http://localhost:3002/posts/${userId}/posts`,
+      `https://socio-sphere-server-zeta.vercel.app/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${authToken}` },

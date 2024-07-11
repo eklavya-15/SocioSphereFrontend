@@ -11,7 +11,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setLogin } from "state";
+import { setLogin } from "../state";
 import Dropzone from "react-dropzone";
 
 const registerSchema = yup.object().shape({
@@ -59,7 +59,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3002/auth/register",
+      "https://socio-sphere-server-zeta.vercel.app/auth/register",
       {
         method: "POST",
         body: formData,
@@ -74,7 +74,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3002/auth/login", {
+    const loggedInResponse = await fetch("https://socio-sphere-server-zeta.vercel.app/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),

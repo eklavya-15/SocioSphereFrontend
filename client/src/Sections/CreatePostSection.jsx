@@ -18,7 +18,7 @@ import {
 import Dropzone from "react-dropzone";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "state";
+import { setPosts } from "../state";
 
 const CreatePostSection = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const CreatePostSection = ({ picturePath }) => {
       formData.append("picture", selectedVideo);
       formData.append("picturePath", selectedVideo.name);
     }
-    const response = await fetch(`http://localhost:3002/posts`, {
+    const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${authToken}` },
       body: formData,

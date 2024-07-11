@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFriends, setUsers } from "state";
+import { setFriends, setUsers } from "../state";
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ const SuggestionsWidget = ({ userId }) => {
   const fetchFriends = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3002/users/${userId}/friends`,
+        `https://socio-sphere-server-zeta.vercel.app/users/${userId}/friends`,
         {
           method: "GET",
           headers: {
@@ -38,7 +38,7 @@ const SuggestionsWidget = ({ userId }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:3002/users", {
+      const response = await fetch("https://socio-sphere-server-zeta.vercel.app/users", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const SuggestionsWidget = ({ userId }) => {
     >
       <Typography
         color="#333333"
-        variant="h5"
+        variant="h5" 
         fontWeight="500"
         sx={{ mb: "1.5rem" }}
       >
@@ -122,7 +122,7 @@ const FriendCard = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://localhost:3002/users/${_id}/${friendId}`,
+      `https://socio-sphere-server-zeta.vercel.app/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {

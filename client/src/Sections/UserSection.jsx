@@ -26,7 +26,7 @@ const UserWidget = ({ isProfile, userId, picturePath }) => {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch(`http://localhost:3002/users/${userId}`, {
+      const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/users/${userId}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -43,7 +43,7 @@ const UserWidget = ({ isProfile, userId, picturePath }) => {
   };
 
   const handleBio = async() =>{
-    fetch(`http://localhost:3002/users/${userId}`, {
+    fetch(`https://socio-sphere-server-zeta.vercel.app/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const UserWidget = ({ isProfile, userId, picturePath }) => {
 
   const handleName =  async () => {
     try {
-      const response = await fetch(`http://localhost:3002/users/${userId}`, {
+      const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/users/${userId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

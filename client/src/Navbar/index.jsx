@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, IconButton, InputBase, Typography, Select, MenuItem, FormControl, useMediaQuery } from '@mui/material';
 import { ChatBubble, Menu, Close, NotificationAdd } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLogout } from 'state';
+import { setLogout } from '../state';
 import { useNavigate } from 'react-router-dom';
 
 const CustomNavbar = () => {

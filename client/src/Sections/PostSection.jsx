@@ -10,7 +10,7 @@ import {
 import { Box, IconButton, Typography,  InputBase, Button } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost, setFriends } from "state";
+import { setPost, setFriends } from "../state";
 import { useNavigate } from "react-router-dom";
   import {
     FacebookShareButton,
@@ -79,7 +79,7 @@ const PostSection = ({
   };
 
   const handleLike = async () => {
-    const response = await fetch(`http://localhost:3002/posts/${postId}/like`, {
+    const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${authToken}`,
@@ -92,7 +92,7 @@ const PostSection = ({
   };
 
   const handleComment = async () => {
-    const response = await fetch(`http://localhost:3002/posts/${postId}/comments`, {
+    const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/posts/${postId}/comments`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${authToken}`,
@@ -250,7 +250,7 @@ const FriendCard = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://localhost:3002/users/${_id}/${friendId}`,
+      `https://socio-sphere-server-zeta.vercel.app/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {

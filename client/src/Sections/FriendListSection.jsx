@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFriends } from 'state';
+import { setFriends } from '../state';
 import { PersonAddOutlined, PersonRemoveOutlined } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -9,11 +9,12 @@ const FriendListSection = ({ userId }) => {
   const dispatch = useDispatch();
   const authToken = useSelector((state) => state.token);
   const userFriends = useSelector((state) => state.user.friends);
+  console.log(userFriends);
 
   useEffect(() => {
     const fetchUserFriends = async () => {
       try {
-        const response = await fetch(`http://localhost:3002/users/${userId}/friends`, {
+        const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/users/${userId}/friends`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -42,6 +43,7 @@ const FriendListSection = ({ userId }) => {
       </Typography>
       <Box display="flex" flexDirection="column" gap="1.5rem">
         {userFriends?.map((friend) => (
+          console.log(friend.bio),
           <FriendCard
             key={friend._id}
             friendId={friend._id}
@@ -69,7 +71,7 @@ const FriendCard = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     try {
-      const response = await fetch(`http://localhost:3002/users/${_id}/${friendId}`, {
+      const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/users/${_id}/${friendId}`, {
         method: 'PATCH',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -83,6 +85,8 @@ const FriendCard = ({ friendId, name, subtitle, userPicturePath }) => {
       console.error('Error updating friend status:', error);
     }
   };
+
+  console.log(subtitle);
 
   return (
     <Box display="flex" justifyContent="space-between" alignItems="center">

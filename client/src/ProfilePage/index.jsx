@@ -16,7 +16,7 @@ const ProfilePage = () => {
 
   const fetchProfileUser = async () => {
     try {
-      const response = await fetch(`http://localhost:3002/users/${userId}`, {
+      const response = await fetch(`https://socio-sphere-server-zeta.vercel.app/users/${userId}`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${authToken}` },
       });

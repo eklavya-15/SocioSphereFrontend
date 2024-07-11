@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { setFriends } from "state";
+import { setFriends } from "../state";
 import { io } from "socket.io-client";
 import axios from "axios";
 
@@ -25,10 +25,10 @@ const ChatPage = () => {
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
-  const socket = io("http://localhost:3002", {
+  const socket = io("https://socio-sphere-server-zeta.vercel.app", {
     query: { token },
   });
-  // const socket = require('socket.io-client')('http://localhost:3002', {
+  // const socket = require('socket.io-client')('https://socio-sphere-server-zeta.vercel.app', {
   //   transports: ['websocket'],
   //   rejectUnauthorized:   false,
   //  })
@@ -49,7 +49,7 @@ const ChatPage = () => {
   const getFriendsAndUnseenMessages = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3002/users/${userId}/friends`,
+        `https://socio-sphere-server-zeta.vercel.app/users/${userId}/friends`,
         {
           method: "GET",
           headers: {
@@ -68,7 +68,7 @@ const ChatPage = () => {
 
       // Fetch unseen messages count for each friend
       const unseenResponse = await axios.get(
-        `http://localhost:3002/messages/${userId}/unseen`,
+        `https://socio-sphere-server-zeta.vercel.app/messages/${userId}/unseen`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ const ChatPage = () => {
   const fetchMessages = async (friendId) => {
     try {
       const response = await fetch(
-        `http://localhost:3002/messages/${userId}/${friendId}`,
+        `https://socio-sphere-server-zeta.vercel.app/messages/${userId}/${friendId}`,
         {
           method: "GET",
           headers: {
@@ -151,7 +151,7 @@ const ChatPage = () => {
 
     // Update unseen message count in backend
     await axios.patch(
-      `http://localhost:3002/messages/seen/${userId}/${friend._id}/mark-seen`,
+      `https://socio-sphere-server-zeta.vercel.app/messages/seen/${userId}/${friend._id}/mark-seen`,
       { count: 0 },
       { headers: { Authorization: `Bearer ${token}` } }
     );
